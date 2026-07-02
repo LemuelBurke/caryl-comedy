@@ -33,6 +33,10 @@ app.use(helmet({
       frameSrc: ['https://www.youtube.com'],
     },
   },
+  // Helmet's default of "no-referrer" strips the referrer YouTube's embed
+  // player uses to validate playback — that's what threw error 153 in
+  // production while localhost (no helmet there) worked fine.
+  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
 }))
 
 app.use(cors({
