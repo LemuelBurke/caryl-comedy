@@ -19,7 +19,6 @@ export function AdminLoginPage() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
-      localStorage.setItem('admin_token', data.token)
       navigate('/admin/dashboard')
     } catch (err) {
       setError(err.message || 'Login failed')

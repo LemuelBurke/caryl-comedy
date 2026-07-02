@@ -2,13 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const emptyGigForm = { date: '', date_display: '', venue: '', href: '' }
-
-function authHeaders() {
-  return {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('admin_token')}`,
-  }
-}
+const jsonHeaders = { 'Content-Type': 'application/json' }
 
 function StatCard({ label, value, sub }) {
   return (
@@ -45,34 +39,31 @@ export function AdminDashboard() {
   const [gigError, setGigError] = useState('')
   const [gigSaving, setGigSaving] = useState(false)
 
-  const token = localStorage.getItem('admin_token')
-
-  const logout = () => {
-    localStorage.removeItem('admin_token')
+  const logout = async () => {
+    await fetch('/api/auth/logout', { method: 'POST' }).catch(() => {})
     navigate('/admin')
   }
 
   const fetchStats = useCallback(async () => {
-    const res = await fetch('/api/analytics/stats', { headers: authHeaders() })
+    const res = await fetch('/api/analytics/stats')
     if (res.status === 401) { logout(); return }
     setStats(await res.json())
   }, [])
 
   const fetchGigs = useCallback(async () => {
-    const res = await fetch('/api/gigs/all', { headers: authHeaders() })
+    const res = await fetch('/api/gigs/all')
     if (res.status === 401) { logout(); return }
     setGigs(await res.json())
   }, [])
 
   useEffect(() => {
-    if (!token) { navigate('/admin'); return }
     fetchStats()
     fetchGigs()
-  }, [token])
+  }, [])
 
   const handleDeleteGig = async (id) => {
     if (!confirm('Delete this gig?')) return
-    await fetch(`/api/gigs/${id}`, { method: 'DELETE', headers: authHeaders() })
+    await fetch(`/api/gigs/${id}`, { method: 'DELETE' })
     if (editingId === id) cancelEdit()
     fetchGigs()
   }
@@ -103,7 +94,7 @@ export function AdminDashboard() {
     try {
       const res = await fetch(editingId ? `/api/gigs/${editingId}` : '/api/gigs', {
         method: editingId ? 'PUT' : 'POST',
-        headers: authHeaders(),
+        headers: jsonHeaders,
         body: JSON.stringify(gigForm),
       })
       const data = await res.json()

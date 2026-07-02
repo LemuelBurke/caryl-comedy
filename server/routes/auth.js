@@ -5,6 +5,14 @@ import db from '../db.js'
 
 const router = Router()
 
+const COOKIE_MAX_AGE = 8 * 60 * 60 * 1000 // 8h, matches JWT expiresIn below
+
+const cookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'strict',
+}
+
 router.post('/login', (req, res) => {
   const { username, password } = req.body
   if (!username || !password) {
@@ -19,7 +27,13 @@ router.post('/login', (req, res) => {
   const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, {
     expiresIn: '8h',
   })
-  res.json({ token })
+  res.cookie('admin_token', token, { ...cookieOptions, maxAge: COOKIE_MAX_AGE })
+  res.json({ success: true, username: user.username })
+})
+
+router.post('/logout', (req, res) => {
+  res.clearCookie('admin_token', cookieOptions)
+  res.json({ success: true })
 })
 
 export default router

@@ -4,6 +4,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import cors from 'cors'
 import helmet from 'helmet'
+import cookieParser from 'cookie-parser'
 import rateLimit from 'express-rate-limit'
 
 import authRoutes from './routes/auth.js'
@@ -41,13 +42,16 @@ app.use(helmet({
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' ? false : 'http://localhost:5173',
+  credentials: true,
 }))
 app.use(express.json())
+app.use(cookieParser())
 
+const authLimiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 5, message: { error: 'Too many login attempts, please try again later.' } })
 const contactLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 5, message: { error: 'Too many requests, please try again later.' } })
 const analyticsLimiter = rateLimit({ windowMs: 60 * 1000, max: 30 })
 
-app.use('/api/auth', authRoutes)
+app.use('/api/auth', authLimiter, authRoutes)
 app.use('/api/gigs', gigsRoutes)
 app.use('/api/contact', contactLimiter, contactRoutes)
 app.use('/api/analytics', analyticsLimiter, analyticsRoutes)
