@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import { config as loadEnv } from 'dotenv'
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -13,7 +13,10 @@ import analyticsRoutes from './routes/analytics.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const distPath = path.join(__dirname, '../../dist')
+
+// Check server/.env first (production), fall back to root .env (local dev)
+loadEnv({ path: [path.join(__dirname, '.env'), path.join(__dirname, '../.env')] })
+const distPath = path.join(__dirname, '../client/dist')
 
 const app = express()
 const PORT = process.env.PORT || 3002

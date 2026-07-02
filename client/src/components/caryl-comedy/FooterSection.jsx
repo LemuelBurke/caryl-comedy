@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Logo from './cainanLogo'
 
 export function FooterSection({ columns, content }) {
   return (
@@ -29,7 +30,19 @@ export function FooterSection({ columns, content }) {
       </div>
       <div className="footer-bottom">
         <p>{content.bottomLeft}</p>
-        <p className="welsh">{content.bottomRight}</p>
+        <a
+          href="https://cainan.studio/websites"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer-credit"
+        >
+          <span className="footer-credit-text">
+            Designed &amp; Developed by
+            <Logo fill="#FFFFFF" size={20} />
+            <span className="footer-credit-brand">Cainan</span>
+          </span>
+          <span className="footer-credit-cta">Want a website like this?</span>
+        </a>
       </div>
     </footer>
   )

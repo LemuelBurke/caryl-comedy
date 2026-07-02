@@ -6,7 +6,7 @@ import { mkdirSync } from 'fs'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const dbPath = path.join(__dirname, '../../data/carylcomedy.db')
+const dbPath = path.join(__dirname, '../data/carylcomedy.db')
 mkdirSync(path.dirname(dbPath), { recursive: true })
 
 const db = new Database(dbPath)

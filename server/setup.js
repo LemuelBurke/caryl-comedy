@@ -1,6 +1,12 @@
-import 'dotenv/config'
+import { config as loadEnv } from 'dotenv'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import bcrypt from 'bcryptjs'
 import db from './db.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+loadEnv({ path: [path.join(__dirname, '.env'), path.join(__dirname, '../.env')] })
 
 const args = process.argv.slice(2)
 const usernameIdx = args.indexOf('--username')
@@ -10,7 +16,7 @@ const username = usernameIdx !== -1 ? args[usernameIdx + 1] : 'admin'
 const password = passwordIdx !== -1 ? args[passwordIdx + 1] : null
 
 if (!password) {
-  console.error('Usage: node src/server/setup.js --password <password> [--username <username>]')
+  console.error('Usage: node server/setup.js --password <password> [--username <username>]')
   process.exit(1)
 }
 
