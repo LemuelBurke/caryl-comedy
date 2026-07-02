@@ -7,3 +7,4 @@ client/dist
 client/.env
 server/.env
 *.local
+Archive.tar.gz

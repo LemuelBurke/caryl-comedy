@@ -20,8 +20,11 @@ jobs:
             set -e
             cd ~/carylcomedy
 
-            # Pull latest code
-            git pull origin main
+            # Force the checkout to exactly match GitHub — this is a deploy
+            # target, not a place for independent history, so always hard-reset
+            # rather than merge/rebase divergent local commits.
+            git fetch origin main
+            git reset --hard origin/main
 
             # Activate cPanel's Node.js virtual environment
             source ~/nodevenv/carylcomedy/22/bin/activate
