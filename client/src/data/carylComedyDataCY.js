@@ -1,5 +1,5 @@
 import heroPhoto from '../assets/Adobe Express - file high qal.png'
-import aboutPhoto from '../assets/IMG_5042 - ©Andy Hollingworth.jpg'
+import aboutPhoto from '../assets/CARYLBURKE-12, ©Mefus Photography.jpg'
 
 export const navLinks = [
   { href: '#about', label: 'Am' },
