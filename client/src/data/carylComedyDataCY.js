@@ -1,15 +1,13 @@
-// TODO: translate this file into Welsh — currently a copy of carylComedyDataEN.js
-// so the site renders correctly for lang='cy' until real translations are added.
 import heroPhoto from '../assets/Adobe Express - file high qal.png'
 import aboutPhoto from '../assets/IMG_5042 - ©Andy Hollingworth.jpg'
 
 export const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#tour', label: 'Gigs' },
-  { href: '#videos', label: 'Video' },
+  { href: '#about', label: 'Am' },
+  { href: '#tour', label: 'Sioeau' },
+  { href: '#videos', label: 'Fideo' },
+  { href: '#contact', label: 'Cysylltu' },
 ]
 
-// TODO: confirm real profile URLs — placeholders until Caryl/the site owner supplies them
 export const socialLinks = [
   { href: 'https://instagram.com/', label: 'Instagram', icon: 'instagram' },
   { href: 'https://tiktok.com/', label: 'TikTok', icon: 'tiktok' },
@@ -21,87 +19,90 @@ export const heroContent = {
   eyebrow: '',
   quote: 'The most promising thing to come out of Wales since Gareth Bale.',
   ctaHref: '#tour',
-  ctaLabel: 'See upcoming gig dates',
+  ctaLabel: 'Gweler dyddiadau sioeau sydd ar ddod',
 }
 
 export const heroImage = heroPhoto
 
 export const aboutContent = {
-  heading: 'A sharp, fun set with proper punchlines. ',
-  highlighted: 'Witty, warm, and unapologetically Welsh!',
+  heading: 'Set graff, hwyliog gyda phunchlinau go iawn.',
+  highlighted: 'Craff, cynnes, a Chymreig di-ffrwgwd!',
   paragraphs: [
-    'Caryl\'s awkward storytelling comes with a hint of self-deprecation and sarcasm and lead her to being described as "the most promising thing to come out of Wales since Gareth Bale". Since starting stand up in 2022, she\'s performed in venues such as The Frog and Bucket, The London Comedy store and all over Wales, including a few gigs in her native language of Welsh. Chosen as one of Leicester comedy Festival\'s 2023 Circuit Breakers, she\'s also regularly features on Radio Cymru and has appeared on the comedy panel show "Chwalu Pen" and "Uffern Iaith y Nefoedd". She was part of the \'Beat The Frog World Series\' and became the first woman to open for Paul Smith at one of his sold out tour gigs in Coventry as well as tour support for Elis James.',
+    'Daw straeon lletchwith Caryl gyda mymryn o hunan-ddirmyg a sarcasm, ac arweiniodd at ei disgrifio fel "the most promising thing to come out of Wales since Gareth Bale". Ers dechrau stand-yp yn 2022, mae hi wedi perfformio mewn lleoliadau fel The Frog and Bucket, The London Comedy Store, a ledled Cymru, gan gynnwys ychydig o gigs yn ei hiaith frodorol, sef y Gymraeg.',
+    'Wedi\'i dewis fel un o "Circuit Breakers" Gŵyl Gomedi Leicester 2023, mae hi hefyd yn ymddangos yn rheolaidd ar Radio Cymru ac wedi ymddangos ar y sioeau panel comedi "Chwalu Pen" ac "Uffern Iaith y Nefoedd". Roedd hi\'n rhan o\'r "Beat The Frog World Series" a hi oedd y fenyw gyntaf i agor i Paul Smith yn un o\'i gigiau taith a oedd wedi gwerthu allan yn Coventry, yn ogystal â darparu cefnogaeth ar daith i Elis James.',
   ],
   credentials: [
-    'Stand-up Comedy',
-    'Acting',
-    'Welsh and English Language Performances',
-    'Gigging Across the UK',
+    'Comedi',
+    'Actio',
+    'Perfformiadau yn Gymraeg a Saesneg',
+    'Perfformio Ledled y DU',
   ],
 }
 
 export const aboutImage = aboutPhoto
 
 export const tourContent = {
-  heading: 'Upcoming',
-  headingAccent: 'Gigs',
-  noGigs: 'No upcoming gigs announced right now — check back soon.',
-  ticketLabel: 'Link',
+  heading: 'Sioeau i',
+  headingAccent: 'Ddod',
+  noGigs: "Dim sioeau i ddod wedi'u cyhoeddi ar hyn o bryd — edrychwch eto'n fuan.",
+  ticketLabel: 'Tocynnau',
 }
 
-// TODO: no reference screenshot covered this section — real video links/copy still needed
+export const videosContent = {
+  heading: 'Gwylio',
+  headingAccent: 'Caryl',
+}
+
 export const videoHighlights = [
   {
-    href: '',
-    title: 'Video highlights coming soon',
-    description: 'Live clips from recent gigs will land here shortly.',
+    href: 'https://www.youtube.com/watch?v=sXx3cwkaHMU',
+    title: 'RSVP | Drama Gomedi | Comedy Drama ',
+    description: 'Cadi is a young single woman and on a quest for a wedding date! With her best friends, Beth and Huw on her team, will she score the perfect plus one?',
   },
   {
-    href: '',
-    title: 'Live at the Comedy Store',
-    description: 'Coming soon.',
+    href: 'https://www.youtube.com/watch?v=BsF80Pz2jUs',
+    title: 'Caryl Burke, Beat The Frog ',
+    description: 'Beat The Frog at the Frog and Bucket Feb 2023',
   },
   {
-    href: '',
+    href: 'https://www.youtube.com/watch?v=af8_4A44MFA',
     title: 'Sesiwn Fawr highlights',
-    description: 'Coming soon.',
+    description: 'One-off stand-up show showcasing the most exciting new Welsh comedy stars. Hosted by Mel Owen and starring Carwyn Blayney, Laurie Watts and Caryl Burke. Filmed live in Aberystwyth.',
   },
 ]
 
-// TODO: no reference screenshot covered this section — draft copy, confirm before shipping
 export const contactContent = {
-  heading: 'Get in',
-  headingAccent: 'Touch',
-  subheading: 'For bookings, press enquiries, or just to say hello.',
+  heading: 'Cysylltu',
+  headingAccent: '',
+  subheading: "Ar gyfer archebion, ymholiadau'r wasg, neu jest i ddweud helo.",
   fields: {
-    name: 'Name',
-    email: 'Email',
-    subject: 'Subject',
-    message: 'Message',
+    name: 'Enw',
+    email: 'E-bost',
+    subject: 'Pwnc',
+    message: 'Neges',
   },
-  successMessage: "Thanks — I'll get back to you as soon as I can.",
-  errorMessage: 'Something went wrong sending your message. Please try again, or email directly.',
-  privacy: 'By submitting this form you agree to our',
-  privacyLink: 'Privacy Policy',
-  submitLabel: 'Send message',
+  successMessage: 'Diolch — byddaf yn cysylltu â chi cyn gynted ag y gallaf.',
+  errorMessage: "Aeth rhywbeth o'i le wrth anfon eich neges. Cofiwch roi cynnig arall, neu anfonwch e-bost yn uniongyrchol.",
+  privacy: "Drwy gyflwyno'r ffurflen hon, rydych yn cytuno i'n",
+  privacyLink: 'Polisi Preifatrwydd',
+  submitLabel: 'Anfon neges',
 }
 
-// TODO: no reference screenshot covered this section — draft copy, confirm before shipping
 export const footerColumns = [
   {
-    heading: 'Site',
+    heading: 'Safle',
     links: [
-      { href: '#about', label: 'About' },
-      { href: '#tour', label: 'Gigs' },
-      { href: '#videos', label: 'Video' },
-      { href: '#contact', label: 'Contact' },
+      { href: '#about', label: 'Amdanom' },
+      { href: '#tour', label: 'Sioeau' },
+      { href: '#videos', label: 'Fideo' },
+      { href: '#contact', label: 'Cysylltu' },
     ],
   },
   {
-    heading: 'Legal',
+    heading: 'Cyfreithiol',
     links: [
-      { href: '/privacy', label: 'Privacy Policy' },
-      { href: '/terms', label: 'Terms' },
+      { href: '/privacy', label: 'Polisi Preifatrwydd' },
+      { href: '/terms', label: 'Telerau' },
     ],
   },
 ]
@@ -109,7 +110,7 @@ export const footerColumns = [
 export const footerContent = {
   brand: 'Caryl',
   accent: 'Comedy',
-  tagline: 'Welsh stand-up, straight talking.',
-  bottomLeft: '© 2026 Caryl Comedy. All rights reserved.',
-  bottomRight: 'Made in Wales',
+  tagline: 'Comedi stand-yp Gymreig, siaradus.',
+  bottomLeft: '© 2026 Caryl Comedy. Cedwir pob hawl.',
+  bottomRight: 'Gwnaed yng Nghymru',
 }

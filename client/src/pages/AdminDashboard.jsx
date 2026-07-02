@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+const emptyGigForm = { date: '', date_display: '', venue: '', href: '' }
+
 function authHeaders() {
   return {
     'Content-Type': 'application/json',
@@ -38,7 +40,8 @@ export function AdminDashboard() {
   const [stats, setStats] = useState(null)
   const [gigs, setGigs] = useState([])
   const [tab, setTab] = useState('stats')
-  const [gigForm, setGigForm] = useState({ date: '', date_display: '', show_name: 'CARYL BURKE', venue: '', href: '' })
+  const [gigForm, setGigForm] = useState(emptyGigForm)
+  const [editingId, setEditingId] = useState(null)
   const [gigError, setGigError] = useState('')
   const [gigSaving, setGigSaving] = useState(false)
 
@@ -70,7 +73,20 @@ export function AdminDashboard() {
   const handleDeleteGig = async (id) => {
     if (!confirm('Delete this gig?')) return
     await fetch(`/api/gigs/${id}`, { method: 'DELETE', headers: authHeaders() })
+    if (editingId === id) cancelEdit()
     fetchGigs()
+  }
+
+  const handleEditGig = (gig) => {
+    setEditingId(gig.id)
+    setGigForm({ date: gig.date, date_display: gig.date_display, venue: gig.venue, href: gig.href || '' })
+    setGigError('')
+  }
+
+  const cancelEdit = () => {
+    setEditingId(null)
+    setGigForm(emptyGigForm)
+    setGigError('')
   }
 
   const handleDateChange = (e) => {
@@ -80,19 +96,19 @@ export function AdminDashboard() {
     setGigForm(f => ({ ...f, date: iso, date_display: display }))
   }
 
-  const handleAddGig = async (e) => {
+  const handleSubmitGig = async (e) => {
     e.preventDefault()
     setGigError('')
     setGigSaving(true)
     try {
-      const res = await fetch('/api/gigs', {
-        method: 'POST',
+      const res = await fetch(editingId ? `/api/gigs/${editingId}` : '/api/gigs', {
+        method: editingId ? 'PUT' : 'POST',
         headers: authHeaders(),
         body: JSON.stringify(gigForm),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
-      setGigForm({ date: '', date_display: '', show_name: 'CARYL BURKE', venue: '', href: '' })
+      cancelEdit()
       fetchGigs()
     } catch (err) {
       setGigError(err.message)
@@ -154,8 +170,8 @@ export function AdminDashboard() {
           <div className="admin-section">
             <h2>Manage Gigs</h2>
 
-            <form className="gig-form" onSubmit={handleAddGig}>
-              <h3 className="admin-sub-heading">Add New Gig</h3>
+            <form className="gig-form" onSubmit={handleSubmitGig}>
+              <h3 className="admin-sub-heading">{editingId ? 'Edit Gig' : 'Add New Gig'}</h3>
               <div className="gig-form-grid">
                 <div className="admin-field">
                   <label>Date</label>
@@ -172,15 +188,6 @@ export function AdminDashboard() {
                   />
                 </div>
                 <div className="admin-field">
-                  <label>Show Name</label>
-                  <input
-                    type="text"
-                    value={gigForm.show_name}
-                    onChange={e => setGigForm(f => ({ ...f, show_name: e.target.value }))}
-                    placeholder="CARYL BURKE"
-                  />
-                </div>
-                <div className="admin-field">
                   <label>Venue</label>
                   <input
                     type="text"
@@ -190,7 +197,7 @@ export function AdminDashboard() {
                     required
                   />
                 </div>
-                <div className="admin-field admin-field--full">
+                <div className="admin-field">
                   <label>Ticket URL (optional)</label>
                   <input
                     type="url"
@@ -201,9 +208,16 @@ export function AdminDashboard() {
                 </div>
               </div>
               {gigError && <p className="admin-error">{gigError}</p>}
-              <button type="submit" className="admin-btn" disabled={gigSaving}>
-                {gigSaving ? 'Adding…' : 'Add Gig'}
-              </button>
+              <div className="gig-form-actions">
+                <button type="submit" className="admin-btn" disabled={gigSaving}>
+                  {gigSaving ? 'Saving…' : editingId ? 'Save Changes' : 'Add Gig'}
+                </button>
+                {editingId && (
+                  <button type="button" className="admin-btn-secondary" onClick={cancelEdit}>
+                    Cancel
+                  </button>
+                )}
+              </div>
             </form>
 
             <h3 className="admin-sub-heading">All Gigs</h3>
@@ -214,9 +228,8 @@ export function AdminDashboard() {
                 <thead>
                   <tr>
                     <th>Date</th>
-                    <th>Show</th>
                     <th>Venue</th>
-                    <th>Link</th>
+                    <th>Tickets</th>
                     <th>Status</th>
                     <th></th>
                   </tr>
@@ -225,11 +238,10 @@ export function AdminDashboard() {
                   {gigs.map(gig => (
                     <tr key={gig.id} className={gig.date < today ? 'gig-past' : ''}>
                       <td>{gig.date_display}</td>
-                      <td>{gig.show_name}</td>
                       <td>{gig.venue}</td>
                       <td>
                         {gig.href
-                          ? <a href={gig.href} target="_blank" rel="noopener noreferrer">Link ↗</a>
+                          ? <a href={gig.href} target="_blank" rel="noopener noreferrer">Tickets ↗</a>
                           : '—'
                         }
                       </td>
@@ -239,9 +251,14 @@ export function AdminDashboard() {
                         </span>
                       </td>
                       <td>
-                        <button className="admin-delete-btn" onClick={() => handleDeleteGig(gig.id)}>
-                          Delete
-                        </button>
+                        <div className="admin-row-actions">
+                          <button className="admin-edit-btn" onClick={() => handleEditGig(gig)}>
+                            Edit
+                          </button>
+                          <button className="admin-delete-btn" onClick={() => handleDeleteGig(gig.id)}>
+                            Delete
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}

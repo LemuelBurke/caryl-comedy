@@ -43,7 +43,6 @@ export function TourSection({ content }) {
           data-reveal
         >
           <div className="d-date">{gig.date_display}</div>
-          <div className="d-show">{gig.show_name}</div>
           <div className="d-venue">{gig.venue}</div>
           {gig.href && (
             <a

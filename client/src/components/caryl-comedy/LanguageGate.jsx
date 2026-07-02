@@ -1,9 +1,11 @@
+import { useLocation } from 'react-router-dom'
 import { useLang } from '../../context/LanguageContext.jsx'
 
 export function LanguageGate() {
   const { hasChosen, choose } = useLang()
+  const { pathname } = useLocation()
 
-  if (hasChosen) return null
+  if (hasChosen || pathname.startsWith('/admin')) return null
 
   return (
     <div className="lang-gate" role="dialog" aria-modal="true" aria-label="Choose your language / Dewiswch eich iaith">

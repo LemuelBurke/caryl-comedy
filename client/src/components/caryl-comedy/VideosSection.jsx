@@ -1,4 +1,4 @@
-export function VideosSection({ items }) {
+export function VideosSection({ content, items }) {
   const getYouTubeId = (url) => {
     if (!url) return null
     const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)
@@ -8,8 +8,8 @@ export function VideosSection({ items }) {
   return (
     <section className="videos" id="videos">
       <h2 className="videos-heading" data-reveal>
-        Watch<br />
-        <span>Caryl</span>
+        {content.heading}<br />
+        <span>{content.headingAccent}</span>
       </h2>
       <div className="vid-grid" data-reveal>
         <div className="vid-big">

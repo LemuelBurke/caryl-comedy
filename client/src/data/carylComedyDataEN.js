@@ -46,25 +46,30 @@ export const tourContent = {
   heading: 'Upcoming',
   headingAccent: 'Gigs',
   noGigs: 'No upcoming gigs announced right now — check back soon.',
-  ticketLabel: 'Link',
+  ticketLabel: 'Tickets',
+}
+
+export const videosContent = {
+  heading: 'Watch',
+  headingAccent: 'Caryl',
 }
 
 // TODO: no reference screenshot covered this section — real video links/copy still needed
 export const videoHighlights = [
   {
-    href: '',
-    title: 'Video highlights coming soon',
-    description: 'Live clips from recent gigs will land here shortly.',
+    href: 'https://www.youtube.com/watch?v=sXx3cwkaHMU',
+    title: 'RSVP | Drama Gomedi | Comedy Drama ',
+    description: 'Cadi is a young single woman and on a quest for a wedding date! With her best friends, Beth and Huw on her team, will she score the perfect plus one?',
   },
   {
-    href: '',
-    title: 'Live at the Comedy Store',
-    description: 'Coming soon.',
+    href: 'https://www.youtube.com/watch?v=BsF80Pz2jUs',
+    title: 'Caryl Burke, Beat The Frog ',
+    description: 'Beat The Frog at the Frog and Bucket Feb 2023',
   },
   {
-    href: '',
+    href: 'https://www.youtube.com/watch?v=af8_4A44MFA',
     title: 'Sesiwn Fawr highlights',
-    description: 'Coming soon.',
+    description: 'One-off stand-up show showcasing the most exciting new Welsh comedy stars. Hosted by Mel Owen and starring Carwyn Blayney, Laurie Watts and Caryl Burke. Filmed live in Aberystwyth.',
   },
 ]
 
@@ -72,7 +77,7 @@ export const videoHighlights = [
 export const contactContent = {
   heading: 'Get in',
   headingAccent: 'Touch',
-  subheading: 'For bookings, press enquiries, or just to say hello.',
+  subheading: 'For bookings, general enquiries, or just to say hello.',
   fields: {
     name: 'Name',
     email: 'Email',
@@ -109,6 +114,6 @@ export const footerColumns = [
 export const footerContent = {
   brand: 'Caryl',
   accent: 'Comedy',
-  tagline: 'Welsh stand-up comedian.',
+  tagline: 'Welsh stand-up comedian peforming in English and Welsh.',
   bottomLeft: '© 2026 Caryl Comedy. All rights reserved.',
 }

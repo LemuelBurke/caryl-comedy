@@ -25,10 +25,8 @@ export function CarylComedyPage() {
   }, [])
 
   useEffect(() => {
-    const revealNodes = Array.from(document.querySelectorAll('[data-reveal]'))
-
     if (!('IntersectionObserver' in window)) {
-      revealNodes.forEach((node) => node.classList.add('on'))
+      document.querySelectorAll('[data-reveal]').forEach((node) => node.classList.add('on'))
       return undefined
     }
 
@@ -43,8 +41,29 @@ export function CarylComedyPage() {
       { threshold: 0.2 },
     )
 
-    revealNodes.forEach((node) => observer.observe(node))
-    return () => observer.disconnect()
+    // Content like the gig list loads asynchronously and adds its own
+    // [data-reveal] nodes after this effect's initial scan, so watch for
+    // nodes added later (not just what's present on mount).
+    const observeNode = (node) => {
+      if (node.hasAttribute?.('data-reveal')) observer.observe(node)
+      node.querySelectorAll?.('[data-reveal]').forEach((child) => observer.observe(child))
+    }
+
+    document.querySelectorAll('[data-reveal]').forEach((node) => observer.observe(node))
+
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === Node.ELEMENT_NODE) observeNode(node)
+        })
+      })
+    })
+    mutationObserver.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      observer.disconnect()
+      mutationObserver.disconnect()
+    }
   }, [lang])
 
   return (
@@ -54,7 +73,7 @@ export function CarylComedyPage() {
         <HeroSection content={d.heroContent} image={d.heroImage} />
         <AboutSection content={d.aboutContent} image={d.aboutImage} />
         <TourSection content={d.tourContent} />
-        <VideosSection items={d.videoHighlights} />
+        <VideosSection content={d.videosContent} items={d.videoHighlights} />
         <ContactSection content={d.contactContent} />
       </main>
       <FooterSection columns={d.footerColumns} content={d.footerContent} />

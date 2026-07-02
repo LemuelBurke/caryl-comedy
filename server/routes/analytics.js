@@ -60,10 +60,18 @@ router.get('/stats', requireAuth, (req, res) => {
   ).all()
 
   const dailyViews = db.prepare(
-    `SELECT substr(timestamp, 1, 10) as day, COUNT(*) as n
-     FROM analytics_events WHERE event_type = 'page_view' AND timestamp >= ?
-     GROUP BY day ORDER BY day ASC`
-  ).all(days30)
+    `WITH RECURSIVE days(day) AS (
+       SELECT date('now', '-29 days')
+       UNION ALL
+       SELECT date(day, '+1 day') FROM days WHERE day < date('now')
+     )
+     SELECT days.day as day, COUNT(ae.id) as n
+     FROM days
+     LEFT JOIN analytics_events ae
+       ON substr(ae.timestamp, 1, 10) = days.day AND ae.event_type = 'page_view'
+     GROUP BY days.day
+     ORDER BY days.day ASC`
+  ).all()
 
   res.json({
     totalViews,

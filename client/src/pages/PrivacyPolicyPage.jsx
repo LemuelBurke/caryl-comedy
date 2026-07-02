@@ -30,12 +30,12 @@ export function PrivacyPolicyPage() {
 
         <h2>1. Who We Are</h2>
         <p>
-          This website (<strong>carylcomedy.co.uk</strong>) is operated by Caryl Burke Comedy ("we", "us", "our").
+          This website (<strong>carylcomedy.co.uk</strong>) is operated by <a href="https://cainan.studio">Cainan</a> ("we", "us", "our").
           We are committed to protecting your personal information in compliance with the UK General Data Protection
           Regulation (UK GDPR) and the Data Protection Act 2018.
         </p>
         <p>
-          For data enquiries, contact us via the <a href="/#contact">contact form</a> on this website.
+          For data enquiries, contact us via the <a href="https://cainan.studio/contact">contact form</a> on the <a href="https://cainan.studio">Cainan</a> website.
         </p>
 
         <h2>2. What Data We Collect and Why</h2>
@@ -104,7 +104,7 @@ export function PrivacyPolicyPage() {
           <li><strong>Right to object:</strong> Object to processing based on legitimate interests.</li>
         </ul>
         <p>
-          To exercise any of these rights, contact us via the <a href="/#contact">contact form</a>.
+          To exercise any of these rights, contact us via the <a href="https://cainan.studio/contact">contact form</a>.
           We will respond within 30 days. If you are not satisfied with our response, you have the right to
           lodge a complaint with the{' '}
           <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">
@@ -138,7 +138,7 @@ export function PrivacyPolicyPage() {
 
         <h2>9. Contact</h2>
         <p>
-          For any privacy-related questions, please use the <a href="/#contact">contact form</a> on this website.
+          For any privacy-related questions, please use the <a href="https://cainan.studio/contact">contact form</a> on the <a href="https://cainan.studio">Cainan</a> website.
         </p>
       </main>
     </div>
