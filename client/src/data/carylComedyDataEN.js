@@ -16,7 +16,7 @@ export const socialLinks = [
 ]
 
 export const heroContent = {
-  titleLine1: 'Morgan',
+  titleLine1: 'CARYL',
   titleLine2: 'BURKE',
   eyebrow: '',
   quote: 'The most promising thing to come out of Wales since Gareth Bale.',
