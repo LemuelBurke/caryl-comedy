@@ -30,7 +30,7 @@ export const aboutContent = {
   heading: 'A sharp, fun set with proper punchlines. ',
   highlighted: 'Witty, warm, and unapologetically Welsh!',
   paragraphs: [
-    'Caryl\'s awkward storytelling comes with a hint of self-deprecation and sarcasm and lead her to being described as "the most promising thing to come out of Wales since Gareth Bale". Since starting stand up in 2022, she\'s performed in venues such as The Frog and Bucket, The London Comedy store and all over Wales, including a few gigs in her native language of Welsh. Chosen as one of Leicester comedy Festival\'s 2023 Circuit Breakers, she\'s also regularly features on Radio Cymru and has appeared on the comedy panel show "Chwalu Pen" and "Uffern Iaith y Nefoedd". She was part of the \'Beat The Frog World Series\' and became the first woman to open for Paul Smith at one of his sold out tour gigs in Coventry as well as tour support for Elis James.',
+    'Caryl\'s awkward storytelling comes with a hint of self-deprecation and sarcasm lead her to being described as "the most promising thing to come out of Wales since Gareth Bale". Since starting stand up in 2022, she\'s performed in venues such as The Frog and Bucket, The London Comedy store and all over Wales, including a few gigs in her native language of Welsh. Chosen as one of Leicester comedy Festival\'s 2023 Circuit Breakers, she\'s also regularly features on Radio Cymru and has appeared on the comedy panel show "Chwalu Pen" and "Uffern Iaith y Nefoedd". She was part of the \'Beat The Frog World Series\' and became the first woman to open for Paul Smith at one of his sold out tour gigs in Coventry as well as tour support for Elis James.',
   ],
   credentials: [
     'Stand-up Comedy',

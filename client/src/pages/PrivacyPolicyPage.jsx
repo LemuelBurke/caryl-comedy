@@ -4,12 +4,12 @@ import { useLang } from '../context/LanguageContext.jsx'
 const content = {
   en: {
     title: 'Privacy Policy',
-    updated: 'Last updated: June 2026',
+    updated: 'Last updated: July 2026',
     back: '← Back to site',
   },
   cy: {
     title: 'Polisi Preifatrwydd',
-    updated: 'Diweddarwyd ddiwethaf: Mehefin 2026',
+    updated: 'Diweddarwyd ddiwethaf: Gorffennaf 2026',
     back: '← Yn ôl i\'r wefan',
   },
 }
@@ -112,15 +112,19 @@ export function PrivacyPolicyPage() {
           </a>.
         </p>
 
-        <h2>6. Cookies</h2>
+        <h2>6. Cookies and Local Storage</h2>
         <p>
           Our internal analytics do not use cookies. If Google Analytics is enabled on this site, it may set
           the following cookies: <code>_ga</code>, <code>_gid</code>, <code>_ga_*</code>. These are used to
           distinguish users and sessions. They are not used for advertising.
         </p>
         <p>
-          By continuing to use this site you acknowledge this use. You can disable cookies in your browser settings
-          at any time.
+          We also store your language preference (English or Welsh) in your browser's local storage. This is
+          used only to remember your choice on future visits and is never transmitted to our servers.
+        </p>
+        <p>
+          By continuing to use this site you acknowledge this use. You can disable cookies and clear local
+          storage in your browser settings at any time.
         </p>
 
         <h2>7. Data Security</h2>
